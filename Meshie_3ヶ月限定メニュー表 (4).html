@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meshie 3ヶ月限定ダイエットメニュー</title>
+<style>
+  :root {
+    --gold-light: #F5E6B8;
+    --gold: #D4A843;
+    --gold-deep: #B8860B;
+    --gold-dark: #8B6914;
+    --cream: #FDF8EF;
+    --cream-warm: #FAF0E0;
+    --brown-dark: #3D2B1F;
+    --brown-medium: #5C3D2E;
+    --brown-light: #8B6F5E;
+    --white: #FFFFFF;
+    --off-white: #FFFAF3;
+    --red-accent: #C0392B;
+    --green-accent: #2E7D4F;
+    --shadow-gold: rgba(212, 168, 67, 0.3);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+    background: var(--cream);
+    color: var(--brown-dark);
+    min-height: 100vh;
+  }
+
+  .page {
+    max-width: 800px;
+    margin: 0 auto;
+    background: var(--off-white);
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* === DECORATIVE BORDER === */
+  .page::before {
+    content: '';
+    position: absolute;
+    top: 12px; left: 12px; right: 12px; bottom: 12px;
+    border: 2px solid var(--gold);
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  .page::after {
+    content: '';
+    position: absolute;
+    top: 16px; left: 16px; right: 16px; bottom: 16px;
+    border: 1px solid var(--gold-light);
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  /* === CORNER ORNAMENTS === */
+  .corner {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    z-index: 11;
+  }
+  .corner svg { width: 100%; height: 100%; }
+  .corner-tl { top: 8px; left: 8px; }
+  .corner-tr { top: 8px; right: 8px; transform: scaleX(-1); }
+  .corner-bl { bottom: 8px; left: 8px; transform: scaleY(-1); }
+  .corner-br { bottom: 8px; right: 8px; transform: scale(-1, -1); }
+
+  /* === HEADER === */
+  .header {
+    background: linear-gradient(135deg, #3D2B1F 0%, #5C3D2E 40%, #3D2B1F 100%);
+    padding: 40px 40px 30px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(212,168,67,0.15) 0%, transparent 70%);
+  }
+
+  .header-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--gold-deep), var(--gold), var(--gold-light), var(--gold));
+    color: var(--brown-dark);
+    padding: 6px 28px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    border-radius: 2px;
+    margin-bottom: 16px;
+    position: relative;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.3);
+  }
+
+  .header h1 {
+    font-family: 'Hiragino Mincho ProN', 'Yu Mincho', 'MS PMincho', serif;
+    color: var(--gold);
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    margin-bottom: 6px;
+    position: relative;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  }
+
+  .header-sub {
+    font-family: Georgia, 'Times New Roman', serif;
+    color: var(--gold-light);
+    font-size: 14px;
+    letter-spacing: 6px;
+    font-weight: 400;
+    position: relative;
+  }
+
+  .header-divider {
+    width: 120px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 16px auto 12px;
+    position: relative;
+  }
+
+  .header-divider::after {
+    content: '◆';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--gold);
+    font-size: 8px;
+    background: var(--brown-dark);
+    padding: 0 8px;
+  }
+
+  .header-copy {
+    font-family: 'Hiragino Mincho ProN', 'Yu Mincho', 'MS PMincho', serif;
+    color: var(--cream);
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    line-height: 1.8;
+    position: relative;
+    opacity: 0.9;
+  }
+
+  /* === CONTENT === */
+  .content {
+    padding: 32px 36px 40px;
+  }
+
+  /* === SECTION TITLES === */
+  .section-title {
+    text-align: center;
+    margin-bottom: 24px;
+    position: relative;
+  }
+
+  .section-title h2 {
+    font-family: 'Hiragino Mincho ProN', 'Yu Mincho', 'MS PMincho', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--brown-dark);
+    letter-spacing: 3px;
+    display: inline-block;
+    padding: 0 20px;
+    position: relative;
+    background: var(--off-white);
+    z-index: 1;
+  }
+
+  .section-title::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  /* === FEATURE POINTS === */
+  .features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+
+  .feature-item {
+    text-align: center;
+    padding: 16px 8px;
+    background: linear-gradient(180deg, var(--cream-warm) 0%, var(--off-white) 100%);
+    border: 1px solid var(--gold-light);
+    border-radius: 4px;
+    position: relative;
+  }
+
+  .feature-item::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold-light), var(--gold), var(--gold-light));
+  }
+
+  .feature-icon {
+    font-size: 22px;
+    margin-bottom: 6px;
+  }
+
+  .feature-label {
+    font-family: 'Hiragino Mincho ProN', 'Yu Mincho', 'MS PMincho', serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--brown-dark);
+    letter-spacing: 1px;
+    line-height: 1.6;
+  }
+
+  /* === MENU CARD === */
+  .menu-card {
+    background: var(--white);
+    border: 1px solid var(--gold-light);
+    border-radius: 4px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(212,168,67,0.1);
+    position: relative;
+  }
+
+  .menu-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold-light), var(--gold-deep), var(--gold-light));
+  }
+
+  .menu-card-header {
+    background: linear-gradient(135deg, #3D2B1F, #5C3D2E);
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .menu-card-title {
+    font-family: 'Hiragino Mincho ProN', 'Yu Mincho', 'MS PMincho', serif;
+    color: var(--gold);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 2px;
+  }
+
+  .menu-card-badge {
+    background: linear-gradient(135deg, var(--gold-deep), var(--gold));
+    color: var(--brown-dark);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 12px;
+    border-radius: 2px;
+    letter-spacing: 1px;
+  }
+
+  .menu-card-body {
+    padding: 24px 20px;
+  }
+
+  .price-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+
+  .price-original {
+    font-size: 14px;
+    color: var(--brown-light);
+    text-decoration: line-through;
+    font-weight: 400;
+  }
+
+  .price-arrow {
+    color: var(--gold-deep);
+    font-size: 16px;
+  }
+
+  .price-campaign {
+    font-family: 'Hiragino Mincho ProN', 'Yu Mincho', 'MS PMincho', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--red-accent);
+    letter-spacing: 1px;
+    line-height: 1;
+  }
+
+  .price-campaign .yen {
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  .price-campaign .tax {
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--brown-light);
+    margin-left: 4px;
+  }
+
+  .price-per {
+    text-align: center;
+    font-size: 13px;
+    color: var(--brown-medium);
+    margin-bottom: 16px;
+    padding: 6px 0;
+    border-top: 1px solid var(--gold-light);
+    border-bottom: 1px solid var(--gold-light);
+  }
+
+  .price-per strong {
+    color: var(--gold-deep);
+    font-weight: 700;
+    font-size: 15px;
+  }
+
+  .menu-details {
+    list-style: none;
+    padding: 0;
+  }
+
+  .menu-details li {
+    font-size: 13px;
+    color: var(--brown-medium);
+    padding: 5px 0;
+    padding-left: 20px;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .menu-details li::before {
+    content: '◇';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-size: 10px;
+    top: 7px;
+  }
+
+  /* === RECOMMENDED BADGE === */
+  .recommended {
+    position: relative;
+  }
+
+  .recommended .menu-card {
+    border-color: var(--gold);
+    box-shadow: 0 4px 20px rgba(212,168,67,0.25);
+  }
+
+  .recommend-ribbon {
+    position: absolute;
+    top: -1px;
+    right: 20px;
+    background: linear-gradient(180deg, var(--red-accent), #A93226);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 6px 10px 8px;
+    letter-spacing: 1px;
+    z-index: 2;
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 6px), 50% 100%, 0 calc(100% - 6px));
+  }
+
+  /* === COMPARISON TABLE === */
+  .comparison {
+    margin-top: 32px;
+    margin-bottom: 28px;
+  }
+
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+
+  .comparison-table th {
+    font-family: 'Hiragino Mincho ProN', 'Yu Mincho', 'MS PMincho', serif;
+    background: linear-gradient(135deg, #3D2B1F, #5C3D2E);
+    color: var(--gold);
+    padding: 10px 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-align: center;
+    font-size: 12px;
+  }
+
+  .comparison-table th:first-child {
+    text-align: left;
+    width: 30%;
+  }
+
+  .comparison-table td {
+    padding: 10px 12px;
+    text-align: center;
+    border-bottom: 1px solid var(--gold-light);
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .comparison-table td:first-child {
+    text-align: left;
+    font-weight: 500;
+    color: var(--brown-dark);
+    background: var(--cream-warm);
+  }
+
+  .comparison-table tr:nth-child(even) td:not(:first-child) {
+    background: rgba(253,248,239,0.5);
+  }
+
+  .highlight-cell {
+    color: var(--gold-deep) !important;
+    font-weight: 700 !important;
+  }
+
+  .dim-cell {
+    color: var(--brown-light);
+  }
+
+  /* === PELVIC FLOOR SECTION === */
+  .pelvic-section {
+    background: linear-gradient(135deg, var(--cream-warm), var(--off-white));
+    border: 1px solid var(--gold-light);
+    border-radius: 4px;
+    padding: 20px 24px;
+    margin-bottom: 28px;
+    position: relative;
+  }
+
+  .pelvic-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold-light), var(--gold-deep), var(--gold-light));
+  }
+
+  .pelvic-title {
+    font-family: 'Hiragino Mincho ProN', 'Yu Mincho', 'MS PMincho', serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--brown-dark);
+    text-align: center;
+    margin-bottom: 12px;
+    letter-spacing: 2px;
+  }
+
+  .pelvic-text {
+    font-size: 12.5px;
+    color: var(--brown-medium);
+    line-height: 1.9;
+    text-align: center;
+  }
+
+  /* === CONDITIONS === */
+  .conditions {
+    background: var(--cream-warm);
+    border: 1px solid var(--gold-light);
+    border-radius: 4px;
+    padding: 16px 20px;
+    margin-bottom: 28px;
+  }
+
+  .conditions-title {
+    font-family: 'Hiragino Mincho ProN', 'Yu Mincho', 'MS PMincho', serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--brown-dark);
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+  }
+
+  .conditions-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .conditions-list li {
+    font-size: 12px;
+    color: var(--brown-medium);
+    padding: 3px 0;
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .conditions-list li::before {
+    content: '●';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-size: 6px;
+    top: 7px;
+  }
+
+  /* === FOOTER === */
+  .footer {
+    background: linear-gradient(135deg, #3D2B1F 0%, #5C3D2E 40%, #3D2B1F 100%);
+    padding: 24px 36px;
+    text-align: center;
+    position: relative;
+  }
+
+  .footer::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .footer-logo {
+    font-family: Georgia, 'Times New Roman', serif;
+    color: var(--gold);
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 6px;
+    margin-bottom: 4px;
+  }
+
+  .footer-sub {
+    font-family: 'Hiragino Mincho ProN', 'Yu Mincho', 'MS PMincho', serif;
+    color: var(--gold-light);
+    font-size: 11px;
+    letter-spacing: 3px;
+    opacity: 0.8;
+  }
+
+  .footer-note {
+    color: var(--gold-light);
+    font-size: 10px;
+    margin-top: 12px;
+    opacity: 0.6;
+    letter-spacing: 0.5px;
+  }
+
+  /* === DIVIDER === */
+  .gold-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
+    margin: 28px 0;
+    position: relative;
+  }
+
+  .gold-divider::after {
+    content: '✦';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--gold);
+    font-size: 10px;
+    background: var(--off-white);
+    padding: 0 12px;
+  }
+
+  /* === OFF BADGE === */
+  .off-badge {
+    display: inline-block;
+    background: var(--red-accent);
+    color: var(--white);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 2px;
+    margin-left: 8px;
+    letter-spacing: 1px;
+  }
+
+  /* === LEAF DECORATIONS === */
+  .leaf-deco {
+    text-align: center;
+    color: var(--gold-light);
+    font-size: 16px;
+    letter-spacing: 12px;
+    margin-bottom: 8px;
+    opacity: 0.5;
+  }
+
+  @media print {
+    body { background: white; }
+    .page { box-shadow: none; max-width: 100%; }
+  }
+
+  @media (max-width: 600px) {
+    .content { padding: 24px 20px 32px; }
+    .header { padding: 32px 20px 24px; }
+    .header h1 { font-size: 22px; }
+    .features { grid-template-columns: 1fr; gap: 8px; }
+    .price-campaign { font-size: 30px; }
+    .comparison-table { font-size: 11px; }
+    .comparison-table th, .comparison-table td { padding: 8px 6px; }
+    .corner { width: 40px; height: 40px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- Corner Ornaments -->
+  <div class="corner corner-tl">
+    <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 2 L2 30 Q2 2 30 2" stroke="#D4A843" stroke-width="1.5" fill="none"/>
+      <path d="M8 8 L8 20 Q8 8 20 8" stroke="#D4A843" stroke-width="0.8" fill="none" opacity="0.5"/>
+      <circle cx="5" cy="5" r="2" fill="#D4A843" opacity="0.6"/>
+    </svg>
+  </div>
+  <div class="corner corner-tr">
+    <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 2 L2 30 Q2 2 30 2" stroke="#D4A843" stroke-width="1.5" fill="none"/>
+      <path d="M8 8 L8 20 Q8 8 20 8" stroke="#D4A843" stroke-width="0.8" fill="none" opacity="0.5"/>
+      <circle cx="5" cy="5" r="2" fill="#D4A843" opacity="0.6"/>
+    </svg>
+  </div>
+  <div class="corner corner-bl">
+    <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 2 L2 30 Q2 2 30 2" stroke="#D4A843" stroke-width="1.5" fill="none"/>
+      <path d="M8 8 L8 20 Q8 8 20 8" stroke="#D4A843" stroke-width="0.8" fill="none" opacity="0.5"/>
+      <circle cx="5" cy="5" r="2" fill="#D4A843" opacity="0.6"/>
+    </svg>
+  </div>
+  <div class="corner corner-br">
+    <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 2 L2 30 Q2 2 30 2" stroke="#D4A843" stroke-width="1.5" fill="none"/>
+      <path d="M8 8 L8 20 Q8 8 20 8" stroke="#D4A843" stroke-width="0.8" fill="none" opacity="0.5"/>
+      <circle cx="5" cy="5" r="2" fill="#D4A843" opacity="0.6"/>
+    </svg>
+  </div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-badge">8 月 末 ま で 限 定</div>
+    <h1>ダイエットメニュー</h1>
+    <div class="header-sub">DIET MENU</div>
+    <div class="header-divider"></div>
+    <p class="header-copy">
+      北陸初導入 電磁パルスマシン × よもぎ蒸し<br>
+      我慢しない。頑張らない。寝てるだけのダイエット。<br>
+      <span style="font-size:12px; color: var(--gold); letter-spacing: 2px; margin-top: 6px; display: inline-block;">〜 2025年8月31日（日）まで 〜</span>
+    </p>
+  </header>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <!-- FEATURES -->
+    <div class="leaf-deco">✿ ✿ ✿</div>
+    <div class="features">
+      <div class="feature-item">
+        <div class="feature-icon">🕐</div>
+        <div class="feature-label">たった30分<br>寝てるだけ</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🍽</div>
+        <div class="feature-label">食事制限<br>いりません</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🏥</div>
+        <div class="feature-label">医療レベル<br>スペック</div>
+      </div>
+    </div>
+
+    <!-- MENU 1: メディタイトのみ -->
+    <div class="section-title">
+      <h2>初回体験</h2>
+    </div>
+
+    <div class="menu-card">
+      <div class="menu-card-header">
+        <span class="menu-card-title">メディタイト 初回体験</span>
+        <span class="menu-card-badge">NEW</span>
+      </div>
+      <div class="menu-card-body">
+        <div class="price-row">
+          <span class="price-original">通常 ¥16,500</span>
+          <span class="price-arrow">▶</span>
+          <span class="price-campaign">
+            <span class="yen">¥</span>4,400<span class="tax">（税込）</span>
+          </span>
+          <span class="off-badge">73%OFF</span>
+        </div>
+        <ul class="menu-details">
+          <li>電磁パルスマシン「メディタイト」× 1回</li>
+          <li>初回カウンセリング込み約60分</li>
+          <li>部分痩せ・脂肪燃焼＋骨盤底筋トレーニング</li>
+          <li>まずは1回、効果をご体感ください</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- MENU 2: セット -->
+    <div class="recommended">
+      <div class="recommend-ribbon">おすすめ</div>
+      <div class="menu-card">
+        <div class="menu-card-header">
+          <span class="menu-card-title">メディタイト＋よもぎ蒸し 初回体験セット</span>
+          <span class="menu-card-badge">BEST</span>
+        </div>
+        <div class="menu-card-body">
+          <div class="price-row">
+            <span class="price-original">通常 ¥19,800</span>
+            <span class="price-arrow">▶</span>
+            <span class="price-campaign">
+              <span class="yen">¥</span>8,800<span class="tax">（税込）</span>
+            </span>
+            <span class="off-badge">56%OFF</span>
+          </div>
+          <ul class="menu-details">
+            <li>電磁パルスマシン「メディタイト」× 1回</li>
+            <li>よもぎ蒸し × 1回</li>
+            <li>初回カウンセリング込み</li>
+            <li>骨盤底筋トレーニングも同時にアプローチ</li>
+          </ul>
+          <div style="margin-top: 16px; background: linear-gradient(135deg, #FDF2E0, #FFF8EE); border: 1px solid var(--gold); border-radius: 4px; padding: 14px 16px; text-align: center;">
+            <div style="font-family: 'Hiragino Mincho ProN', 'Yu Mincho', 'MS PMincho', serif; font-size: 13px; font-weight: 600; color: var(--gold-deep); margin-bottom: 6px; letter-spacing: 1px;">★ スタッフおすすめ ★</div>
+            <div style="font-size: 12.5px; color: var(--brown-medium); line-height: 1.8;">
+              よもぎ蒸しで身体を芯から温め<br>
+              代謝を上げた状態でメディタイトを受けることで<br>
+              <strong style="color: var(--gold-deep);">効果をより実感しやすくなります。</strong><br>
+              本気で結果を出したい方はセットがおすすめです。
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DIVIDER -->
+    <div class="gold-divider"></div>
+
+    <!-- SECTION: モニター6回コース -->
+    <div class="section-title">
+      <h2>モニター6回コース</h2>
+    </div>
+
+    <div class="menu-card">
+      <div class="menu-card-header">
+        <span class="menu-card-title">メディタイト 6回コース</span>
+        <span class="menu-card-badge">6回</span>
+      </div>
+      <div class="menu-card-body">
+        <div class="price-row">
+          <span class="price-original">通常 ¥99,000</span>
+          <span class="price-arrow">▶</span>
+          <span class="price-campaign">
+            <span class="yen">¥</span>39,800<span class="tax">（税込）</span>
+          </span>
+          <span class="off-badge">60%OFF</span>
+        </div>
+        <div class="price-per">
+          1回あたり <strong>¥6,633</strong>
+        </div>
+        <ul class="menu-details">
+          <li>電磁パルスマシン「メディタイト」× 6回</li>
+          <li>1回30分 ／ 初回のみカウンセリング込み60分</li>
+          <li>約6回で部分痩せ・脂肪燃焼を実感</li>
+          <li>骨盤底筋トレーニングも同時にアプローチ</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- MENU 4: モニター6回セット -->
+    <div class="recommended">
+      <div class="recommend-ribbon">おすすめ</div>
+      <div class="menu-card">
+        <div class="menu-card-header">
+          <span class="menu-card-title">メディタイト＋よもぎ蒸し 6回セット</span>
+          <span class="menu-card-badge">BEST</span>
+        </div>
+        <div class="menu-card-body">
+          <div class="price-row">
+            <span class="price-original">通常 ¥118,800</span>
+            <span class="price-arrow">▶</span>
+            <span class="price-campaign">
+              <span class="yen">¥</span>49,800<span class="tax">（税込）</span>
+            </span>
+            <span class="off-badge">58%OFF</span>
+          </div>
+          <div class="price-per">
+            1回あたり <strong>¥8,300</strong>（セット）
+          </div>
+          <ul class="menu-details">
+            <li>電磁パルスマシン「メディタイト」× 6回</li>
+            <li>よもぎ蒸し × 6回（通常¥30,000相当）</li>
+            <li>内側と外側、両面からのトータルダイエット</li>
+            <li>骨盤底筋トレーニングも同時にアプローチ</li>
+          </ul>
+          <div style="margin-top: 16px; background: linear-gradient(135deg, #FDF2E0, #FFF8EE); border: 1px solid var(--gold); border-radius: 4px; padding: 14px 16px; text-align: center;">
+            <div style="font-family: 'Hiragino Mincho ProN', 'Yu Mincho', 'MS PMincho', serif; font-size: 13px; font-weight: 600; color: var(--gold-deep); margin-bottom: 6px; letter-spacing: 1px;">★ スタッフおすすめ ★</div>
+            <div style="font-size: 12.5px; color: var(--brown-medium); line-height: 1.8;">
+              6回コースに＋¥10,000で<br>
+              よもぎ蒸し6回（通常¥30,000相当）が付きます。<br>
+              代謝を上げた状態で施術するため<br>
+              <strong style="color: var(--gold-deep);">効果をより実感しやすいセットです。</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PELVIC FLOOR -->
+    <div class="pelvic-section">
+      <div class="pelvic-title">＋ 骨盤底筋トレーニング</div>
+      <p class="pelvic-text">
+        メディタイトは部分痩せだけでなく、<br>
+        骨盤底筋のトレーニングも同時に行えます。<br><br>
+        尿漏れ・産後のゆるみ・姿勢の崩れなど<br>
+        デリケートなお悩みも、<br>
+        機械におまかせいただくだけで無理なくケアできます。
+      </p>
+    </div>
+
+    <div class="gold-divider"></div>
+
+    <!-- COMPARISON -->
+    <div class="comparison">
+      <div class="section-title">
+        <h2>他サービスとの比較</h2>
+      </div>
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Meshie<br>メディタイト</th>
+            <th>痩身エステ</th>
+            <th>ジム＋<br>パーソナル</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1回の時間</td>
+            <td class="highlight-cell">30分</td>
+            <td class="dim-cell">60〜120分</td>
+            <td class="dim-cell">60〜90分</td>
+          </tr>
+          <tr>
+            <td>必要回数</td>
+            <td class="highlight-cell">約6回</td>
+            <td class="dim-cell">10〜20回</td>
+            <td class="dim-cell">継続必要</td>
+          </tr>
+          <tr>
+            <td>初回体験</td>
+            <td class="highlight-cell">¥4,400〜</td>
+            <td class="dim-cell">¥10,000〜</td>
+            <td class="dim-cell">¥5,000〜</td>
+          </tr>
+          <tr>
+            <td>6回トータル</td>
+            <td class="highlight-cell">¥39,800〜</td>
+            <td class="dim-cell">20〜35万円</td>
+            <td class="dim-cell">月2〜3万円</td>
+          </tr>
+          <tr>
+            <td>食事制限</td>
+            <td class="highlight-cell">なし</td>
+            <td class="dim-cell">推奨あり</td>
+            <td class="dim-cell">必要</td>
+          </tr>
+          <tr>
+            <td>運動</td>
+            <td class="highlight-cell">不要</td>
+            <td class="dim-cell">不要</td>
+            <td class="dim-cell">必要</td>
+          </tr>
+          <tr>
+            <td>骨盤底筋</td>
+            <td class="highlight-cell">対応</td>
+            <td class="dim-cell">非対応</td>
+            <td class="dim-cell">一部対応</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="gold-divider"></div>
+
+    <!-- PRICE SUMMARY -->
+    <div class="section-title">
+      <h2>料金まとめ</h2>
+    </div>
+
+    <table class="comparison-table" style="margin-bottom: 28px;">
+      <thead>
+        <tr>
+          <th style="text-align:left;">メニュー</th>
+          <th>通常料金</th>
+          <th>モニター料金</th>
+          <th>割引率</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>メディタイト初回体験</td>
+          <td class="dim-cell">¥16,500</td>
+          <td class="highlight-cell" style="color: #C0392B !important;">¥4,400</td>
+          <td class="highlight-cell" style="color: #C0392B !important;">73%OFF</td>
+        </tr>
+        <tr>
+          <td>よもぎ蒸しセット初回体験</td>
+          <td class="dim-cell">¥19,800</td>
+          <td class="highlight-cell" style="color: #C0392B !important;">¥8,800</td>
+          <td class="highlight-cell" style="color: #C0392B !important;">56%OFF</td>
+        </tr>
+        <tr>
+          <td>モニター6回コース</td>
+          <td class="dim-cell">¥99,000</td>
+          <td class="highlight-cell" style="color: #C0392B !important;">¥39,800</td>
+          <td class="highlight-cell" style="color: #C0392B !important;">60%OFF</td>
+        </tr>
+        <tr>
+          <td>モニター6回セット</td>
+          <td class="dim-cell">¥118,800</td>
+          <td class="highlight-cell" style="color: #C0392B !important;">¥49,800</td>
+          <td class="highlight-cell" style="color: #C0392B !important;">58%OFF</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="gold-divider"></div>
+
+    <!-- CONDITIONS -->
+    <div class="conditions">
+      <div class="conditions-title">◆ モニター条件</div>
+      <ul class="conditions-list">
+        <li>施術前後の写真撮影にご協力いただける方</li>
+        <li>口コミ投稿にご協力いただける方</li>
+        <li>2025年8月31日まで・なくなり次第終了</li>
+      </ul>
+    </div>
+
+    <div class="conditions">
+      <div class="conditions-title">◆ 施術について</div>
+      <ul class="conditions-list">
+        <li>初回：カウンセリング込み約60分</li>
+        <li>2回目以降：約30分</li>
+        <li>お着替えの必要はございません</li>
+        <li>約6回前後で部分痩せの効果が期待できます</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-logo">Meshie</div>
+    <div class="footer-sub">本格よもぎ蒸し専門店</div>
+    <div class="footer-note">福井県福井市 ｜ 完全予約制</div>
+  </footer>
+
+</div>
+
+</body>
+</html>
